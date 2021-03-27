@@ -1,13 +1,16 @@
 // Temp
 const currentTournamentId = "k2xk1wih";
 
-module.exports.onMessage = (discordClient, message) => {
+module.exports.onDiscordMessage = (discordClient, message) => {
   // Check if message starts with our prefix or is another bot. If so, quit program
   if (
     !message.content.startsWith(process.env.DISCORD_PREFIX) ||
     message.author.bot
   )
     return;
+
+  // Delete message to keep tiny
+  message.delete();
 
   // Split message up into individual words then extract the first as the command
   const args = message.content

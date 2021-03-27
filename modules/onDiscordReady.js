@@ -1,4 +1,4 @@
-module.exports.onReady = (discordClient) => {
+module.exports.onDiscordReady = (discordClient) => {
   console.log("The bot is online");
   discordClient.user
     .setActivity("Your Discord Server", { type: "WATCHING" })

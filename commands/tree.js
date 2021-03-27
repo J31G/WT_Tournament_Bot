@@ -11,6 +11,9 @@ module.exports = {
       if (err.code !== "ENOENT") console.error(err); // Ignore not found errors
     }
 
+    // Create temp placeholder message
+    const tempMessage = message.channel.send("Loading tree...");
+
     // Take a screenshot of the tournament module and save it to disk
     await captureWebsite.file(
       `https://challonge.com/${currentTournamentId}/module`,
@@ -24,6 +27,9 @@ module.exports = {
         removeElements: [".qc-cmp2-container", ".embed-cake-unit"],
       }
     );
+
+    // Now delete placeholder before posting tree
+    tempMessage.then((msg) => msg.delete());
 
     // Send screenshot to channel
     message.channel.send(`Wolfteam tournament tree!`, {
