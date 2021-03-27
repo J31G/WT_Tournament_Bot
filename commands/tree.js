@@ -26,7 +26,7 @@ module.exports = {
     );
 
     // Send screenshot to channel
-    await message.channel.send(`Wolfteam tournament tree!`, {
+    message.channel.send(`Wolfteam tournament tree!`, {
       files: [`./files/screenshot.png`],
     });
   },
