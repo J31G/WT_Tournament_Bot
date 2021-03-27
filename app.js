@@ -3,6 +3,9 @@ const Discord = require("discord.js");
 const fs = require("fs");
 require("dotenv").config();
 
+// Temp
+const currentTournamentId = "k2xk1wih";
+
 // Discord setup
 const discordClient = new Discord.Client();
 discordClient.commands = new Discord.Collection();
@@ -48,7 +51,9 @@ discordClient.on("message", (message) => {
 
   // If found, move to the command module and report any errors
   try {
-    discordClient.commands.get(command).execute(message, args);
+    discordClient.commands
+      .get(command)
+      .execute(message, args, discordClient, currentTournamentId);
   } catch (error) {
     console.error(error);
     message.reply("there was an error trying to execute that command!");
