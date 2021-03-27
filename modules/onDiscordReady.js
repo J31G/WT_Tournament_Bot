@@ -4,6 +4,7 @@ module.exports.onDiscordReady = (discordClient, io) => {
     .setActivity("Your Discord Server", { type: "WATCHING" })
     .catch((err) => console.error(err));
 
+  /*
   // Socket connection
   io.on("connection", (socket) => {
     // New user
@@ -12,5 +13,5 @@ module.exports.onDiscordReady = (discordClient, io) => {
     socket.on("new-reg", (data) => {
       console.log(data);
     });
-  });
+  }); */
 };

@@ -17,17 +17,20 @@ const discordClient = new Discord.Client({
 });
 discordClient.commands = new Discord.Collection();
 
-// Web/Socket Setup
+// App setup
 const app = express();
 const port = 4000;
 app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  })
+	helmet({
+		contentSecurityPolicy: false,
+	})
 );
+
 const server = app.listen(port, () => {
-  console.log(`Listening to requests at http://localhost:${port}`);
+  console.log(`Listening to requests at http://localhost:${port}`)
 });
+
+// Socket setup
 const io = socket(server);
 
 // Check for commands in our commands folder
