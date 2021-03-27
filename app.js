@@ -6,9 +6,12 @@ require("dotenv").config();
 // Local Modules
 const { onDiscordReady } = require("./modules/onDiscordReady");
 const { onDiscordMessage } = require("./modules/onDiscordMessage");
+const { onDiscordReactionAdd } = require("./modules/onDiscordReactionAdd");
 
 // Discord setup
-const discordClient = new Discord.Client();
+const discordClient = new Discord.Client({
+  partials: ["MESSAGE", "CHANNEL", "REACTION"],
+});
 discordClient.commands = new Discord.Collection();
 
 // Check for commands in our commands folder
@@ -29,6 +32,11 @@ discordClient.once("ready", () => onDiscordReady(discordClient));
 // On "message" handler "./modules/onDiscordMessage"
 discordClient.on("message", (message) =>
   onDiscordMessage(discordClient, message)
+);
+
+// On "messageReactionAdd" handler "./modules/messageReactionAdd"
+discordClient.on("messageReactionAdd", (reaction, user) =>
+  onDiscordReactionAdd(reaction, user)
 );
 
 // Log bot in using the token
