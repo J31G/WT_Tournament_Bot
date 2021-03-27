@@ -5,7 +5,6 @@ module.exports = {
   description: "Test Embed that listens for reactions",
   async execute(message) {
     // Getting the role by ID.
-    // eslint-disable-next-line no-unused-vars
     const tournamentMemberRole = message.guild.roles.cache.get(
       "825393592251449354"
     );
@@ -19,12 +18,12 @@ module.exports = {
       .addFields(
         {
           name: "✅",
-          value: `This will add you to the \n**${tournamentMemberRole.name}** role`,
+          value: `This will add you to the \n**${tournamentMemberRole.name}** role. You then can view more info about this tournament and find our how to apply to take part.`,
           inline: true,
         },
         {
           name: "❎",
-          value: `This will remove you from the \n**${tournamentMemberRole.name}** role`,
+          value: `This will remove you from the **${tournamentMemberRole.name}** role and you'll lose access to all the tournament related channels.`,
           inline: true,
         }
       );
