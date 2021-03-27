@@ -14,7 +14,8 @@ const commandFiles = fs
 
 // For each command found, register it as a command
 commandFiles.forEach((file) => {
-  const command = `./commands/${file}`;
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const command = require(`./commands/${file}`);
   discordClient.commands.set(command.name, command);
 });
 
@@ -47,9 +48,7 @@ discordClient.on("message", (message) => {
 
   // If found, move to the command module and report any errors
   try {
-    discordClient.commands
-      .get(command)
-      .execute(message, args, discordClient, Discord);
+    discordClient.commands.get(command).execute(message, args);
   } catch (error) {
     console.error(error);
     message.reply("there was an error trying to execute that command!");
